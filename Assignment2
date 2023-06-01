@@ -1,0 +1,145 @@
+Answer 1
+
+class Solution(object):
+    def arrayPairSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        result = 0
+        numsLen = len(nums)
+        for i in range(0, numsLen - 1, 2):
+            result += nums[i]
+        return result
+        
+        
+ Answer 2
+ 
+ def maxCandies(candyType):
+    max_candies = len(candyType) // 2
+    unique_candies = set()
+
+    for candy in candyType:
+        unique_candies.add(candy)
+
+    return min(max_candies, len(unique_candies))
+    
+    candyType = [1, 1, 2, 2, 3, 3]
+print(maxCandies(candyType))
+
+
+Answer 3
+
+def findLHS(nums):
+    freq = {}
+    for num in nums:
+        freq[num] = freq.get(num, 0) + 1
+
+    max_length = 0
+    for num in freq:
+        if num + 1 in freq:
+            length = freq[num] + freq[num + 1]
+            max_length = max(max_length, length)
+
+    return max_length
+    
+nums = [1, 3, 2, 2, 5, 2, 3, 7]
+print(findLHS(nums))
+
+
+Answer 4 
+
+def canPlaceFlowers(flowerbed, n):
+    count = 0
+    i = 0
+    while i < len(flowerbed):
+        if flowerbed[i] == 0 and (i == 0 or flowerbed[i - 1] == 0) and (i == len(flowerbed) - 1 or flowerbed[i + 1] == 0):
+            flowerbed[i] = 1
+            count += 1
+            i += 1 
+
+        if count >= n:
+            return True
+        
+        i += 1
+
+    return False
+    
+    flowerbed = [1, 0, 0, 0, 1]
+n = 1
+print(canPlaceFlowers(flowerbed, n))
+
+
+Answer 5 
+
+def maximumProduct(nums):
+    nums.sort()
+    n = len(nums)
+    max_product = nums[n-1] * nums[n-2] * nums[n-3]
+    min_product = nums[0] * nums[1] * nums[n-1]
+    return max(max_product, min_product)
+nums = [1, 2, 3]
+print(maximumProduct(nums))
+
+
+Answer 6
+
+def search(nums, target):
+    left = 0
+    right = len(nums) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+    
+nums = [-1, 0, 3, 5, 9, 12]
+target = 9
+print(search(nums, target))
+
+Answer 7
+
+
+def isMonotonic(nums):
+    increasing = True
+    decreasing = True
+
+    for i in range(1, len(nums)):
+        if nums[i] > nums[i-1]:
+            decreasing = False
+        elif nums[i] < nums[i-1]:
+            increasing = False
+
+        if not increasing and not decreasing:
+            return False
+
+    return True
+nums = [1, 2, 2, 3]
+print(isMonotonic(nums))
+
+
+Answer 8
+
+def minScore(nums, k):
+    min_val = min(nums)
+    max_val = max(nums)
+
+    if max_val - min_val <= 2 * k:
+        return 0
+    else:
+        return max_val - min_val - 2 * k
+
+nums = [1]
+k = 0
+print(minScore(nums, k))
+
+
+
